@@ -2,7 +2,10 @@ import React from "react";
 
 const ImageTogglerOnMouseOver = ({primaryImg, secondaryImg}) => {
   return (
-    <img src={primaryImg}
+    <img 
+      onMouseOver={() => {}}
+      onMouseOut={() => {}}
+      src={primaryImg}
       alt=""
     />
   );
