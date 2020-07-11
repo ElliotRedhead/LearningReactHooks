@@ -3,9 +3,9 @@ import React from "react";
 const ImageChangeOnMouseOver = () => {
   return (
     <div>
-      <img src="" alt="" />
+      <img src="/static/bw/Speaker-187" alt="" />
       &nbsp;&nbsp;&nbsp;
-      <img src="" alt="" />
+      <img src="/static/bw/Speaker-1124" alt="" />
     </div>
   );
 };
