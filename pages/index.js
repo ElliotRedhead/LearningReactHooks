@@ -13,9 +13,12 @@ const InputElement = () => {
   return (
     // Input field that can capture typed text as it changes.
     // On change the setInputText function is called.
-    <input
-      onChange={(event) => { setInputText(event.target.value);}}
-      placeholder="Enter some text"/>
+    <div>
+      <input
+        onChange={(event) => { setInputText(event.target.value);}}
+        placeholder="Enter some text"/>
+      {inputText}
+    </div>
   );
 };
 
