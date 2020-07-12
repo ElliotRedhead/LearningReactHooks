@@ -29,6 +29,15 @@ const ImageTogglerOnScroll = ({primaryImg, secondaryImg}) => {
     return false;
   };
 
+  /**
+   * Sets the inView state based on whether the image is in view.
+   */
+  const scrollHandler = () => {
+    setInView(() => {
+      return isInView();
+    });
+  };
+
   return (
     <img 
       onMouseOver={() => {imageRef.current.src = secondaryImg;}}
