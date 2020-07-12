@@ -18,6 +18,7 @@
         "react-dom": "^16.13.1"
     },
     "devDependencies": {
-        "eslint-plugin-react": "^7.20.3"
+        "eslint-plugin-react": "^7.20.3",
+        "eslint-plugin-react-hooks": "^4.0.7"
     }
 }
