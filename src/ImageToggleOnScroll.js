@@ -7,6 +7,8 @@ const ImageTogglerOnScroll = ({primaryImg, secondaryImg}) => {
   useEffect(() => {
     // Specify what is run when the component is mounted.
     window.addEventListener("scroll", scrollHandler);
+    // Call function to check if component is in view on first mount.
+    setInView(isInView);
     // Specify what is run when the function exits, if useEffect is ran multiple times before unmounting
     // then component dependencies are supplied in a list within second arg.
     return (() => {
