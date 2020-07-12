@@ -14,6 +14,9 @@ const ImageTogglerOnScroll = ({primaryImg, secondaryImg}) => {
     });
   });
 
+  // With a large quantity of images, assume that the image isn't in view initially.
+  const [inView, setInView] = useState(false);
+
   return (
     <img 
       onMouseOver={() => {imageRef.current.src = secondaryImg;}}
