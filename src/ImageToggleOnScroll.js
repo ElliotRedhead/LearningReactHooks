@@ -17,6 +17,18 @@ const ImageTogglerOnScroll = ({primaryImg, secondaryImg}) => {
   // With a large quantity of images, assume that the image isn't in view initially.
   const [inView, setInView] = useState(false);
 
+  /**
+   * Determines if image is visible in the scrollable area.
+   * @returns {boolean} true: image is in view, false: image is not in view.
+   */
+  const isInView = () => {
+    if (imageRef.current) {
+      const rect = imageRef.current.getBoundingClientRect();
+      return rect.top >= 0 && rect.bottom <= window.innerHeight;
+    }
+    return false;
+  };
+
   return (
     <img 
       onMouseOver={() => {imageRef.current.src = secondaryImg;}}
