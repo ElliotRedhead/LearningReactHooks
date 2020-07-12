@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, useState, useEffect} from "react";
 
 const ImageTogglerOnScroll = ({primaryImg, secondaryImg}) => {
 
@@ -40,13 +40,11 @@ const ImageTogglerOnScroll = ({primaryImg, secondaryImg}) => {
 
   return (
     <img 
-      onMouseOver={() => {imageRef.current.src = secondaryImg;}}
-      onMouseOut={() => {imageRef.current.src = primaryImg;}}
-      src={primaryImg}
+      src={inView ? secondaryImg : primaryImg}
       alt=""
       ref={imageRef}
     />
   );
 };
 
-export default ImageTogglerOnMouseOver;
+export default ImageTogglerOnScroll;
