@@ -10,7 +10,10 @@
   },
   "parserOptions": {
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "destructuring": true,
+      "spread": true,
+      "experimentalObjectRestSpread": true
     },
     "ecmaVersion": 2018,
     "sourceType": "module"
