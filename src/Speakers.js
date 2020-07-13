@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../static/site.css";
+import "../public/site.css";
 import { Header } from "../src/Header";
 import { Menu } from "../src/Menu";
 import SpeakerData from "./SpeakerData";

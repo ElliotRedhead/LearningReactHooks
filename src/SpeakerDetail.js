@@ -1,4 +1,5 @@
 import ImageToggleOnScroll from "./ImageToggleOnScroll";
+import React from "react";
 
 const SpeakerDetail = ({
   id,
@@ -13,8 +14,8 @@ const SpeakerDetail = ({
     <div className="card col-4 cardmin">
       <ImageToggleOnScroll
         className="card-img-top"
-        primaryImg={`/static/speakers/bw/Speaker-${id}.jpg`}
-        secondaryImg={`/static/speakers/Speaker-${id}.jpg`}
+        primaryImg={`/public/speakers/bw/Speaker-${id}.jpg`}
+        secondaryImg={`/public/speakers/Speaker-${id}.jpg`}
         alt="{firstName} {lastName}"
       />
       <div className="card-body">
