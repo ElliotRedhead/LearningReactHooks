@@ -15,7 +15,7 @@ export const Header = () => {
         </div>
         <div className="col-12 col-sm-8 text-lg-right">
           <div>
-            <img src="/public/SVCClogo.png" />
+            <img src="/SVCClogo.png" />
           </div>
           <h2>Silicon Valley Code Camp 2019</h2>
           <div className="row col-12 text-lg-right">

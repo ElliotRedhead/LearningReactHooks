@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import "/public/site.css";
+import "/site.css";
 class bootstrap extends Component {
   render() {
     return <div>
@@ -14,7 +14,7 @@ class bootstrap extends Component {
           </div>
           <div className="col-12 col-sm-8 text-lg-right">
             <div>
-              <img src="/public/SVCClogo.png" />
+              <img src="/SVCClogo.png" />
             </div>
             <h2>Silicon Valley Code Camp 2019</h2>
           </div>
