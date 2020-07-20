@@ -54,7 +54,6 @@ const SignMeUp = ({ signupCallback }) => {
             type="email"
             name="email"
             required
-            required
           />
           &nbsp;
           <button
