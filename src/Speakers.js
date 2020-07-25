@@ -11,32 +11,6 @@ import { ConfigContext } from "./App";
 const Speakers = ({}) => {
   const [speakingSaturday, setSpeakingSaturday] = useState(true);
   const [speakingSunday, setSpeakingSunday] = useState(true);
-
-  function speakersReducer(state, action){
-    function updatefavourite(favouriteValue) {
-      return state.map((item, index) => {
-        if (item.id === action.sessionId) {
-          item.favourite = favouriteValue;
-          return item;
-        }
-        return item;
-      });
-    }
-    switch (action.type) {
-    case "setSpeakerList": {
-      return action.data;
-    }
-    case "favourite": {
-      return updatefavourite(true);
-    }
-    case "unfavourite": {
-      return updatefavourite(false);
-    }
-    default:
-      return state;
-    }
-  }
-
   const [speakerList, dispatch] = useReducer(speakersReducer, []);
   // useState is like useReducer but with only a default action type
   const [isLoading, setIsLoading] = useState(true);
