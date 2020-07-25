@@ -13,7 +13,7 @@ const Speakers = ({}) => {
   const [speakingSunday, setSpeakingSunday] = useState(true);
 
   function speakersReducer(state, action){
-    function updateFavourite(favouriteValue) {
+    function updatefavourite(favouriteValue) {
       return state.map((item, index) => {
         if (item.id === action.sessionId) {
           item.favourite = favouriteValue;
@@ -27,10 +27,10 @@ const Speakers = ({}) => {
       return action.data;
     }
     case "favourite": {
-      return updateFavourite(true);
+      return updatefavourite(true);
     }
     case "unfavourite": {
-      return updateFavourite(false);
+      return updatefavourite(false);
     }
     default:
       return state;
@@ -88,17 +88,14 @@ const Speakers = ({}) => {
     setSpeakingSunday(!speakingSunday);
   };
 
-  const heartFavoriteHandler = (e, favoriteValue) => {
+  const heartfavouriteHandler = (e, favouriteValue) => {
     e.preventDefault();
     const sessionId = parseInt(e.target.attributes["data-sessionid"].value);
-    setSpeakerList(speakerList.map(item => {
-      if (item.id === sessionId) {
-        item.favorite = favoriteValue;
-        return item;
-      }
-      return item;
-    }));
-    //console.log("changing session favorte to " + favoriteValue);
+    dispatch({
+      type: favouriteValue === true ? "favourite" : "unfavourite",
+      sessionId
+    });
+    console.log("changing session favourite to " + favouriteValue);
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -139,13 +136,13 @@ const Speakers = ({}) => {
         <div className="row">
           <div className="card-deck">
             {speakerListFiltered.map(
-              ({ id, firstName, lastName, bio, favorite }) => {
+              ({ id, firstName, lastName, bio, favourite }) => {
                 return (
                   <SpeakerDetail
                     key={id}
                     id={id}
-                    favorite={favorite}
-                    onHeartFavoriteHandler={heartFavoriteHandler}
+                    favourite={favourite}
+                    onHeartfavouriteHandler={heartfavouriteHandler}
                     firstName={firstName}
                     lastName={lastName}
                     bio={bio}

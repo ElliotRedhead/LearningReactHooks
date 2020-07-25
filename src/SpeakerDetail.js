@@ -5,11 +5,11 @@ const SpeakerDetail = ({
   id,
   firstName,
   lastName,
-  favorite,
+  favourite,
   bio,
-  onHeartFavoriteHandler
+  onHeartfavouriteHandler
 }) => {
-  //console.log(`SpeakerDetail:${id} ${firstName} ${lastName} ${favorite}`);
+  //console.log(`SpeakerDetail:${id} ${firstName} ${lastName} ${favourite}`);
   return (
     <div className="card col-4 cardmin">
       <ImageToggleOnScroll
@@ -22,9 +22,9 @@ const SpeakerDetail = ({
         <h4 className="card-title">
           <button
             data-sessionid={id}
-            className={favorite ? "heartredbutton" : "heartdarkbutton"}
+            className={favourite ? "heartredbutton" : "heartdarkbutton"}
             onClick={e => {
-              onHeartFavoriteHandler(e, !favorite);
+              onHeartfavouriteHandler(e, !favourite);
             }}
           />
           <span>
