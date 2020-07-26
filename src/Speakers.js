@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useReducer, useCallback} from "react";
+import React, { useState, useEffect, useContext, useReducer, useCallback, useMemo} from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../public/site.css";
@@ -43,21 +43,26 @@ const Speakers = ({}) => {
     setSpeakingSaturday(!speakingSaturday);
   };
 
+  /* Cache the filtered and sorted speaker list for multiple use cases.
+  * If any of the dependency array is altered, the memoised version is dumped and filter/sort re-ran.
+  */
+  const newSpeakerList = useMemo(() => speakerList
+    .filter(
+      ({ sat, sun }) => (speakingSaturday && sat) || (speakingSunday && sun)
+    )
+    .sort(function(a, b) {
+      if (a.firstName < b.firstName) {
+        return -1;
+      }
+      if (a.firstName > b.firstName) {
+        return 1;
+      }
+      return 0;
+    }),[speakingSaturday, speakingSunday, speakerList]);
+
   const speakerListFiltered = isLoading
     ? []
-    : speakerList
-      .filter(
-        ({ sat, sun }) => (speakingSaturday && sat) || (speakingSunday && sun)
-      )
-      .sort(function(a, b) {
-        if (a.firstName < b.firstName) {
-          return -1;
-        }
-        if (a.firstName > b.firstName) {
-          return 1;
-        }
-        return 0;
-      });
+    : newSpeakerList;
 
   const handleChangeSunday = () => {
     setSpeakingSunday(!speakingSunday);
