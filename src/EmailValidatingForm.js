@@ -2,33 +2,16 @@ import React, { useState, useReducer } from "react";
 import useInterval from "./useInterval";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../public/site.css";
+import useEmailValidation from "./useEmailValidation";
 
 /**
  * Renders an input field with a countdown limit for entry.
+ * Calls custom hook.
+ * @returns {object} Email input form with timer.
  */
 const EmailValidatingForm = () => {
-  const validateEmail = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  };
-  // Set initial validity state to false (as assumed empty without autofill).
-  const [emailValid, setEmailValid] = useState(false);
-  const reducer = (state, action) => {
-    state = action;
-    // Check email validity within the reducer, prevents having to inline the call with the form.
-    setEmailValid(validateEmail(state));
-    return action;
-  };
-  // useReducer has the advantage of dynamically updating the email.
-  const [email, setEmail] = useReducer(reducer, "");
-  const secondsFormValidFor = 60;
-  const [count, setCount] = useState(secondsFormValidFor);
-  useInterval(
-    () => {
-      setCount(count - 1);
-    },
-    count > 0 ? 1000 : null
-  );
+
+  const {count, email, setEmail, emailValid} = useEmailValidation(10);
 
   return (
     <div className="container">
@@ -64,4 +47,5 @@ const EmailValidatingForm = () => {
     </div>
   );
 };
+
 export default EmailValidatingForm;
