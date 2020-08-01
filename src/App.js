@@ -14,7 +14,9 @@ const pageToShow = pageName => {
  * Example configuration value for use in context.
  */
 const configValue = {
-  showSpeakerSpeakingDays: true
+  showSignMeUp: true,
+  showSpeakerSpeakingDays: true,
+  loggedInUserEmail: "test@domain.com"
 };
 
 /**
