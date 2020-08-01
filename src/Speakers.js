@@ -7,46 +7,28 @@ import { Menu } from "../src/Menu";
 import SpeakerData from "./SpeakerData";
 import SpeakerDetail from "./SpeakerDetail";
 import { ConfigContext } from "./App";
-import speakersReducer from "./SpeakersReducer";
+import useAxiosFetch from "./useAxiosFetch";
 
 const Speakers = ({}) => {
+  const {
+    data,
+    isLoading,
+    hasErrored,
+    errorMessage,
+    updateDataRecord
+  } = useAxiosFetch("http://localhost:4000/speakers", []);
+  
   const [speakingSaturday, setSpeakingSaturday] = useState(true);
   const [speakingSunday, setSpeakingSunday] = useState(true);
-  const [speakerList, dispatch] = useReducer(speakersReducer, []);
-  // useState is like useReducer but with only a default action type
-  const [isLoading, setIsLoading] = useState(true);
 
   const context = useContext(ConfigContext);
 
-  useEffect(() => {
-    setIsLoading(true);
-    new Promise(function(resolve) {
-      setTimeout(function() {
-        resolve();
-      }, 1000);
-    }).then(() => {
-      setIsLoading(false);
-      const speakerListServerFilter = SpeakerData.filter(({ sat, sun }) => {
-        return (speakingSaturday && sat) || (speakingSunday && sun);
-      });
-      dispatch({
-        type: "setSpeakerList",
-        data: speakerListServerFilter
-      });
-    });
-    return () => {
-      console.log("cleanup");
-    };
-  }, []); // [speakingSunday, speakingSaturday]);
 
-  const handleChangeSaturday = () => {
-    setSpeakingSaturday(!speakingSaturday);
-  };
 
   /* Cache the filtered and sorted speaker list for multiple use cases.
   * If any of the dependency array is altered, the memoised version is dumped and filter/sort re-ran.
   */
-  const newSpeakerList = useMemo(() => speakerList
+  const newSpeakerList = useMemo(() => data
     .filter(
       ({ sat, sun }) => (speakingSaturday && sat) || (speakingSunday && sun)
     )
@@ -58,11 +40,22 @@ const Speakers = ({}) => {
         return 1;
       }
       return 0;
-    }),[speakingSaturday, speakingSunday, speakerList]);
+    }),[speakingSaturday, speakingSunday, data]);
 
   const speakerListFiltered = isLoading
     ? []
     : newSpeakerList;
+
+  if(hasErrored)
+    return (
+      <div>
+        {errorMessage}"Make sure you have launched 'npm run json-server'"
+      </div>
+    );
+  
+  const handleChangeSaturday = () => {
+    setSpeakingSaturday(!speakingSaturday);
+  };
 
   const handleChangeSunday = () => {
     setSpeakingSunday(!speakingSunday);
