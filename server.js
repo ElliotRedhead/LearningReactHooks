@@ -32,6 +32,20 @@ app1
   .then(() => {
     const app = express();
 
+    app.use(require("cookie-parser")());
+    app.use(require("body-parser").urlencoded({extended:true}));
+    app.use(
+      require("express-session")({
+        secret:"keyboard cat",
+        resave: false,
+        saveUninitialized: false
+      })
+    );
+
+    // Initialize passport and restore authentication state from session.
+    app.use(passport.initialize());
+    app.use(passport.session());
+
     app.get("*", (req,res) => {
       return handle(req, res);
     });
